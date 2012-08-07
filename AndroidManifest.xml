@@ -1,0 +1,185 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.nekit.androidsamplelist"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sherlock.Light" >
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/title_activity_home" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ServiceActivity"
+            android:description="@string/description_activity_service"
+            android:label="@string/title_activity_service" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.IOActivity"
+            android:description="@string/description_activity_io"
+            android:label="@string/title_activity_io" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.UIActivity"
+            android:description="@string/description_activity_ui"
+            android:label="@string/title_activity_ui" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activityExtra.WebActivity"
+            android:label="@string/title_activity_web" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.utils" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.VibrateActivity"
+            android:description="@string/description_activity_vibrate"
+            android:label="@string/title_activity_vibrate" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.VoiceRecognaizeActivity"
+            android:description="@string/description_activity_voice_recognaize"
+            android:label="@string/title_activity_voice_recognaize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.WifiActivity"
+            android:description="@string/description_activity_wifi"
+            android:label="@string/title_activity_wifi" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.ShakeActivity"
+            android:description="@string/description_activity_shake"
+            android:label="@string/title_activity_shake" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.CameraActivity"
+            android:description="@string/description_activity_camera"
+            android:label="@string/title_activity_camera" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.ColoredButtonsActivity"
+            android:description="@string/description_activity_colored_buttons"
+            android:label="@string/title_activity_colored_buttons" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.ui" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.XMLQuakeActivity"
+            android:description="@string/description_activity_xml_quake"
+            android:label="@string/title_activity_xml_quake" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.io" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.JsonFeedsActivity"
+            android:description="@string/description_activity_json_feeds"
+            android:label="@string/title_activity_json_feeds" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.io" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.TTSActivity"
+            android:description="@string/description_activity_tts"
+            android:label="@string/title_activity_tts" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.JsonTwitterActivity"
+            android:description="@string/description_activity_json_twitter"
+            android:label="@string/title_activity_json_twitter" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.io" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.LogoActivity"
+            android:description="@string/description_activity_logo"
+            android:label="@string/title_activity_logo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.ui" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

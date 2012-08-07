@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  	<color name="rounded_container_border">#33333333</color>
+    <color name="base_start_color_default">#00FFFFFF</color>
+    <color name="base_end_color_default">#FFFFFFFF</color>
+    <color name="base_start_color_pressed">#B03590c4</color>
+    <color name="base_end_color_pressed">#B02570ba</color>
+    <color name="text_color_default">#000000</color>
+    <color name="text_color_pressed">#ffffff</color>  
+
+</resources>

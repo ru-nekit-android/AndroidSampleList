@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuItemContainer"
+    style="@style/menu_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dip"
+    android:minHeight="60dip"
+    android:orientation="horizontal"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tag="image" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:duplicateParentState="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="10dip" >
+
+        <TextView
+            style="@style/menu_item_large_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="title"
+            android:text="title" />
+
+        <TextView
+            style="@style/menu_item_small_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="subtitle"
+            android:text="summary"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/menu_item_large_count_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tag="itemCount"
+        android:visibility="gone" />
+
+    <ImageView
+        style="@style/menu_item_chevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:paddingRight="10dip"
+        android:tag="chevron" />
+
+</LinearLayout>
