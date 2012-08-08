@@ -50,8 +50,8 @@ import com.actionbarsherlock.view.Window;
 public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListener, OnInitListener {
 
 	private static final int SPEECH = 1;
-	private static TextToSpeech repeatTTS;
 	private static LoadJson task;
+	private TextToSpeech repeatTTS;
 	private List<FeedSimpleItemVO> dataSource;
 	private ListView list;
 	private JsonFeedsListAdapter adapter;
@@ -205,6 +205,10 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		{
 			repeatTTS.stop();
 			repeatTTS.shutdown();
+		}
+		if( task != null )
+		{
+			task.cancel(true);
 		}
 		super.onDestroy();
 	}

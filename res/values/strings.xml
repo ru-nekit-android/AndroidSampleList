@@ -23,6 +23,8 @@
     <string name="description_activity_camera">Camera sample</string>
     <string name="title_activity_tts">Text To Speech</string>
     <string name="description_activity_tts">Text To Speech sample - russian translit</string>
+     <string name="title_activity_google_tts">Text To Speech (Google)</string>
+    <string name="description_activity_google_tts">Text To Speech sample - google</string>
     <string name="title_activity_colored_buttons">Colored buttons</string>
     <string name="description_activity_colored_buttons">Colored buttons</string>
     <string name="title_activity_xml_quake">XML Quake</string>

@@ -1,6 +1,8 @@
 package ru.nekit.androidsamplelist.samples;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -11,13 +13,22 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import ru.nekit.androidsamplelist.R;
 import ru.nekit.androidsamplelist.activityExtra.GoUpActivity;
 import ru.nekit.androidsamplelist.listAdapter.JsonTwitterListAdapter;
+import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import ru.nekit.androidsamplelist.model.vo.TwitterItemVO;
+import ru.nekit.androidsamplelist.tools.WidgetTools;
+import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech.EngineInfo;
 import android.view.Gravity;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,8 +41,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.tts.TextToSpeechBeta;
+import com.google.tts.TextToSpeechBeta.OnInitListener;
 
-public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextListener
+public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextListener, OnInitListener, OnItemClickListener
 {
 
 	private SearchView searchView;
@@ -39,6 +52,8 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 	private ArrayList<TwitterItemVO> dataSource;
 	private JsonTwitterListAdapter adapter;
 	private ListView list;
+	private TwitterItemVO currentItem;
+	private  TextToSpeechBeta tts;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
@@ -49,6 +64,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 		adapter = new JsonTwitterListAdapter(this, dataSource);
 		list = (ListView)findViewById(android.R.id.list);
 		list.setAdapter(adapter);
+		list.setOnItemClickListener(this);
 	}
 
 	@Override    
@@ -179,5 +195,85 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 		}
 	}
 
+	private static final ActionItemVO[] actionListData = new ActionItemVO[]{ 
+		//		new ActionItemVO("Open in browser", R.drawable.ic_web), 
+		new ActionItemVO("Speech", R.drawable.ic_volume)
+	};
 
+	private String ttsEngine;
+
+	@Override
+	public void onItemClick(AdapterView<?> adapter, View view, final int index, long i)
+	{
+		currentItem = this.adapter.getItem(index);
+		WidgetTools.showSelectAccountTypeDialog(this, "Choose an action", actionListData, new OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) 
+			{
+				if( which == 0 )
+				{
+					if( tts == null )
+					{
+						ttsEngine = null;
+						tts = new TextToSpeechBeta(JsonTwitterActivity.this, JsonTwitterActivity.this);
+						ttsEngine = tts.getDefaultEngine();
+						if( TextToSpeechBeta.isInstalled(JsonTwitterActivity.this) )
+						{
+							List<EngineInfo> list = tts.getEngines();
+							if( list.size() != 0 )
+							{
+								for( EngineInfo info : list )
+								{
+									if( "com.svox.pico".equals(info.name) )
+									{
+										ttsEngine = info.name;
+									}
+									if( "com.googlecode.eyesfree.espeak".equals(info.name) )
+									{
+										if( ttsEngine == null )
+										{
+											ttsEngine = info.name;
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		} );
+	}
+
+	@Override
+	protected void onDestroy() {
+		if( tts != null )
+		{
+			tts.stop();
+			tts.shutdown();
+		}
+		super.onDestroy();
+	}
+
+	private void speech()
+	{
+		tts.speak(currentItem.message, TextToSpeechBeta.QUEUE_ADD, null);
+	}
+
+	@Override
+	public void onInit(int result, int version) 
+	{
+		if( ttsEngine != null && result == TextToSpeechBeta.SUCCESS  )
+		{
+			tts.setEngineByPackageName(ttsEngine);
+			tts.setLanguage( Locale.US );
+			speech();
+		}else{
+			tts.shutdown();
+			new Builder(this).setTitle("Text to speech")
+			.setCancelable(false)
+			.create()
+			.show();
+		}
+	}
 }

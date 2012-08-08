@@ -1187,13 +1187,14 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0009;
         public static final int app_name=0x7f0a000e;
-        public static final int camera=0x7f0a0031;
+        public static final int camera=0x7f0a0033;
         public static final int description_activity_camera=0x7f0a0022;
-        public static final int description_activity_colored_buttons=0x7f0a0026;
+        public static final int description_activity_colored_buttons=0x7f0a0028;
+        public static final int description_activity_google_tts=0x7f0a0026;
         public static final int description_activity_io=0x7f0a0016;
-        public static final int description_activity_json_feeds=0x7f0a002a;
-        public static final int description_activity_json_twitter=0x7f0a002c;
-        public static final int description_activity_logo=0x7f0a002e;
+        public static final int description_activity_json_feeds=0x7f0a002c;
+        public static final int description_activity_json_twitter=0x7f0a002e;
+        public static final int description_activity_logo=0x7f0a0030;
         public static final int description_activity_service=0x7f0a0018;
         public static final int description_activity_shake=0x7f0a0020;
         public static final int description_activity_tts=0x7f0a0024;
@@ -1201,16 +1202,17 @@ containing a value of this type.
         public static final int description_activity_vibrate=0x7f0a001a;
         public static final int description_activity_voice_recognaize=0x7f0a001c;
         public static final int description_activity_wifi=0x7f0a001e;
-        public static final int description_activity_xml_quake=0x7f0a0028;
+        public static final int description_activity_xml_quake=0x7f0a002a;
         public static final int hello_world=0x7f0a000f;
         public static final int menu_settings=0x7f0a0010;
         public static final int title_activity_camera=0x7f0a0021;
-        public static final int title_activity_colored_buttons=0x7f0a0025;
+        public static final int title_activity_colored_buttons=0x7f0a0027;
+        public static final int title_activity_google_tts=0x7f0a0025;
         public static final int title_activity_home=0x7f0a0011;
         public static final int title_activity_io=0x7f0a0015;
-        public static final int title_activity_json_feeds=0x7f0a0029;
-        public static final int title_activity_json_twitter=0x7f0a002b;
-        public static final int title_activity_logo=0x7f0a002d;
+        public static final int title_activity_json_feeds=0x7f0a002b;
+        public static final int title_activity_json_twitter=0x7f0a002d;
+        public static final int title_activity_logo=0x7f0a002f;
         public static final int title_activity_service=0x7f0a0017;
         public static final int title_activity_shake=0x7f0a001f;
         public static final int title_activity_tts=0x7f0a0023;
@@ -1219,11 +1221,11 @@ containing a value of this type.
         public static final int title_activity_voice_recognaize=0x7f0a001b;
         public static final int title_activity_web=0x7f0a0013;
         public static final int title_activity_wifi=0x7f0a001d;
-        public static final int title_activity_xml_quake=0x7f0a0027;
-        public static final int vibrate=0x7f0a0030;
-        public static final int vibrate_cancel=0x7f0a0032;
-        public static final int voice_recognaize=0x7f0a0033;
-        public static final int wifi_settings=0x7f0a002f;
+        public static final int title_activity_xml_quake=0x7f0a0029;
+        public static final int vibrate=0x7f0a0032;
+        public static final int vibrate_cancel=0x7f0a0034;
+        public static final int voice_recognaize=0x7f0a0035;
+        public static final int wifi_settings=0x7f0a0031;
     }
     public static final class style {
         public static final int AppTheme=0x7f0b005b;

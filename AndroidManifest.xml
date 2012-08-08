@@ -160,6 +160,16 @@
                 <category android:name="ru.nekit.category.service" />
             </intent-filter>
         </activity>
+         <activity
+            android:name=".samples.GoogleTTSActivity"
+            android:description="@string/description_activity_google_tts"
+            android:label="@string/title_activity_google_tts" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".samples.JsonTwitterActivity"
             android:description="@string/description_activity_json_twitter"
