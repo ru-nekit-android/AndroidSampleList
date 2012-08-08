@@ -10,10 +10,10 @@ public class Translit {
 
 	final static int LOWER = 2;
 
-	final static Hashtable map = makeTranslitMap();
+	final static Hashtable<Character, String> map = makeTranslitMap();
 
-	private static Hashtable makeTranslitMap() {
-		Hashtable map = new Hashtable();
+	private static Hashtable<Character, String> makeTranslitMap() {
+		Hashtable<Character, String> map = new Hashtable<Character, String>();
 		map.put(new Character('à'), "a");
 		map.put(new Character('á'), "b");
 		map.put(new Character('â'), "v");

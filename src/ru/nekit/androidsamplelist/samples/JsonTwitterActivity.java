@@ -48,7 +48,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 {
 
 	private SearchView searchView;
-	private static JsonTask task;
+	private JsonTask task;
 	private ArrayList<TwitterItemVO> dataSource;
 	private JsonTwitterListAdapter adapter;
 	private ListView list;
@@ -66,7 +66,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(this);
 	}
-
+	
 	@Override    
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = new MenuInflater(this);

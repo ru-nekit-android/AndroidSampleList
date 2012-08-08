@@ -1,7 +1,5 @@
 package ru.nekit.androidsamplelist.tools;
 
-import java.util.List;
-
 import ru.nekit.androidsamplelist.listAdapter.ActionListAdapter;
 import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import android.app.Activity;

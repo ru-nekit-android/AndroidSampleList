@@ -50,8 +50,8 @@ import com.actionbarsherlock.view.Window;
 public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListener, OnInitListener {
 
 	private static final int SPEECH = 1;
-	private static LoadJson task;
-	private TextToSpeech repeatTTS;
+	private LoadJson task;
+	private TextToSpeech tts;
 	private List<FeedSimpleItemVO> dataSource;
 	private ListView list;
 	private JsonFeedsListAdapter adapter;
@@ -67,9 +67,18 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		dataSource = new ArrayList<FeedSimpleItemVO>();
 		adapter = new JsonFeedsListAdapter(this, dataSource);
 		list.setAdapter(adapter);
-		task = new LoadJson();
-		task.execute();
+		task = (LoadJson) getLastNonConfigurationInstance();
+		if( task == null )
+		{
+			task = new LoadJson();
+			task.execute();
+		}
 		list.setOnItemClickListener(this);
+	}
+
+	public Object onRetainNonConfigurationInstance() 
+	{
+		return task;
 	}
 
 	private class LoadJson extends AsyncTask<Void, FeedSimpleItemVO, Integer>
@@ -179,7 +188,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 					startActivity(intent);
 				}else if( which == 1 )
 				{
-					if( repeatTTS == null )
+					if( tts == null )
 					{
 						Intent checkTTSIntent = new Intent(); 
 						checkTTSIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA); 
@@ -195,16 +204,16 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 	private void speech()
 	{
 		String text = Translit.translit(currentItem.name);
-		repeatTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+		tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 	}
 
 	@Override
 	public void onDestroy()
 	{
-		if (repeatTTS != null)
+		if (tts != null)
 		{
-			repeatTTS.stop();
-			repeatTTS.shutdown();
+			tts.stop();
+			tts.shutdown();
 		}
 		if( task != null )
 		{
@@ -219,7 +228,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		{
 			if( resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS )
 			{
-				repeatTTS = new TextToSpeech(this, this); 
+				tts = new TextToSpeech(this, this); 
 			}else
 			{ 
 				Intent installTTSIntent = new Intent(); 
@@ -235,7 +244,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 	public void onInit(int initStatus) {
 		if (initStatus == TextToSpeech.SUCCESS)  
 		{
-			repeatTTS.setLanguage(Locale.US);
+			tts.setLanguage(Locale.US);
 			speech();
 		}
 	}

@@ -1,7 +1,5 @@
 package ru.nekit.androidsamplelist.listAdapter;
 
-import java.util.List;
-
 import ru.nekit.androidsamplelist.R;
 import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import android.app.Activity;

@@ -1,8 +1,6 @@
 package ru.nekit.androidsamplelist.activityExtra;
 
 import ru.nekit.androidsamplelist.R;
-import ru.nekit.androidsamplelist.R.id;
-import ru.nekit.androidsamplelist.R.layout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
