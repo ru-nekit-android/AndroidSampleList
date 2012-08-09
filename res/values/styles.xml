@@ -61,6 +61,7 @@
     <style name="menu_item_small_text">
         <item name="android:duplicateParentState">true</item>
         <item name="android:textSize">12.0dip</item>
+         <item name="android:paddingBottom">6dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/text_color_selector</item>

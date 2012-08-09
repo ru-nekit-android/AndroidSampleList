@@ -66,7 +66,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(this);
 	}
-	
+
 	@Override    
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = new MenuInflater(this);
@@ -146,6 +146,13 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 		//       {  
 		//       String result = EntityUtils.toString(rp.getEntity());  
 		//       }
+
+		//		HttpClient httpClient = new DefaultHttpClient();
+		//		HttpContext localContext = new BasicHttpContext();
+		//		HttpGet httpGet = new HttpGet("http://www.cheesejedi.com/rest_services/get_big_cheese.php?puzzle=1");
+		//		HttpResponse response = httpClient.execute(httpGet, localContext);
+		//		HttpEntity entity = response.getEntity();
+		//		String result = EntityUtils.toString(entity);
 
 		@Override
 		protected Integer doInBackground(String... params) 

@@ -81,6 +81,25 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".samples.ImageIOActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:description="@string/description_activity_imageio"
+            android:hardwareAccelerated="true"
+            android:label="@string/title_activity_imageio"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="ru.nekit.category.io" />
+
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_activity" />
+        </activity>
+        <activity
             android:name=".samples.VoiceRecognaizeActivity"
             android:description="@string/description_activity_voice_recognaize"
             android:label="@string/title_activity_voice_recognaize" >
@@ -160,7 +179,7 @@
                 <category android:name="ru.nekit.category.service" />
             </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name=".samples.GoogleTTSActivity"
             android:description="@string/description_activity_google_tts"
             android:label="@string/title_activity_google_tts" >
@@ -179,6 +198,10 @@
 
                 <category android:name="ru.nekit.category.io" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_activity" />
         </activity>
         <activity
             android:name=".samples.LogoActivity"

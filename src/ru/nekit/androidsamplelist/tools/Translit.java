@@ -99,28 +99,4 @@ public class Translit {
 		}
 		return sb.toString();
 	}
-
-	public static String makeFileName(String text) {
-		int len = text.length();
-		if (len == 0)
-			return text;
-		StringBuffer sb = new StringBuffer();
-		char lastAppended = 0;
-		int count = 0;
-		for (int i = 0; i < len; i++) {
-			char c = text.charAt(i);
-			if ((c & 0xFFFF) > 0x7F) {
-				// keep non-ASCII as is
-			} else if (c <= ' ' || c == '/' || c == '\\' || c == ':' || c == '~' || c == '"' || c == '.') {
-				c = '_';
-			}
-			if (c == '_' && lastAppended == '_')
-				continue;
-			sb.append(c);
-			if (++count > 50)
-				break;
-			lastAppended = c;
-		}
-		return sb.toString();
-	}
 }

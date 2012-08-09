@@ -5,9 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dip"
-    android:minHeight="60dip"
-    android:orientation="horizontal"
-    >
+    android:minHeight="60dip" android:paddingTop="10dp" android:paddingBottom="10dp"
+    android:orientation="horizontal" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -34,6 +33,7 @@
             style="@style/menu_item_small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="false"
             android:tag="subtitle"
             android:text="summary"
             android:visibility="visible" />

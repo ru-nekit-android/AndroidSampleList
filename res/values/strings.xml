@@ -2,6 +2,9 @@
 
     <string name="app_name">AndroidSampleList</string>
     <string name="hello_world">Hello world!</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_home">Start</string>
     <string name="title_activity_ui">UI</string>
@@ -11,6 +14,8 @@
     <string name="description_activity_io">xml, json, rest, rpc</string>
     <string name="title_activity_service">Services</string>
     <string name="description_activity_service">sensors, wifi, system services</string>
+    <string name="title_activity_imageio">Google Image Query</string>
+    <string name="description_activity_imageio">search + json (streaming jackson) + imagelist (cashable ver 1.0)</string>
     <string name="title_activity_vibrate">Vibate</string>
     <string name="description_activity_vibrate">Vibrate sample</string>
     <string name="title_activity_voice_recognaize">Voice recognaize</string>
@@ -23,7 +28,7 @@
     <string name="description_activity_camera">Camera sample</string>
     <string name="title_activity_tts">Text To Speech</string>
     <string name="description_activity_tts">Text To Speech sample - russian translit</string>
-     <string name="title_activity_google_tts">Text To Speech (Google)</string>
+    <string name="title_activity_google_tts">Text To Speech (Google)</string>
     <string name="description_activity_google_tts">Text To Speech sample - google</string>
     <string name="title_activity_colored_buttons">Colored buttons</string>
     <string name="description_activity_colored_buttons">Colored buttons</string>
