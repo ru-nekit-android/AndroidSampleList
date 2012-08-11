@@ -124,21 +124,6 @@ public class ImageIOActivity extends GoUpActivity
 			super(context, 0);
 		}
 
-		//		private class ViewHolder {
-		//			public ImageView image;
-		//		}
-
-		//		public View getView(final int position, View convertView, ViewGroup parent) 
-		//		{
-		//			final ViewHolder holder;
-		//			if (convertView == null) {
-		//				convertView = new ImageView(ImageIOActivity.this);// getLayoutInflater().inflate(R.layout.item_list_image, null);
-		//				holder = new ViewHolder();
-		//				holder.image = (ImageView) convertView.findViewWithTag("image");
-		//				convertView.setTag(holder);
-		//			} else
-		//				holder = (ViewHolder) convertView.getTag();
-
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ImageView imageView;
 			if (convertView == null)

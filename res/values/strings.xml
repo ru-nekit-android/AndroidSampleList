@@ -15,7 +15,7 @@
     <string name="title_activity_service">Services</string>
     <string name="description_activity_service">sensors, wifi, system services</string>
     <string name="title_activity_imageio">Google Image Query</string>
-    <string name="description_activity_imageio">search + json (streaming jackson) + imagelist (cashable ver 1.0)</string>
+    <string name="description_activity_imageio">search + json (streaming jackson) + imagelist (cashable)</string>
     <string name="title_activity_vibrate">Vibate</string>
     <string name="description_activity_vibrate">Vibrate sample</string>
     <string name="title_activity_voice_recognaize">Voice recognaize</string>
