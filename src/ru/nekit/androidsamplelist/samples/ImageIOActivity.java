@@ -8,12 +8,14 @@ import ru.nekit.androidsamplelist.R;
 import ru.nekit.androidsamplelist.activityExtra.GoUpActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 
 import com.actionbarsherlock.view.Menu;
@@ -24,64 +26,21 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.github.kevinsawicki.http.HttpRequest;
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+import com.github.kevinsawicki.http.HttpRequest.HttpRequestException;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 public class ImageIOActivity extends GoUpActivity 
 {
 
+	private DisplayImageOptions options;
 	private ListView listView;
 	private ListAdapter adapter;
 	private LoadTask task;
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
-	{
-		getSupportMenuInflater().inflate(R.menu.search, menu);
-		//		SubMenu subMenu = menu.addSubMenu(0, -1, 0, null);
-		//		subMenu.setIcon(android.R.drawable.ic_menu_revert);
-		//		MenuItem head = subMenu.add(0, 0, 0, "");
-		//	
-		//		head.setActionView(R.layout.menu_item);
-		//		MenuItem subMenuItem = subMenu.getItem();
-		//		subMenuItem.setTitle("Count");
-		//		subMenuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		//	MenuItem menuItemCreateCart  = menu.add(0, 1, 0, "!!!");
-		//    
-		//
-		//    TextView tv = new TextView(this);
-		//    tv.setText("!!!");
-		//    tv.setTextColor(0xff8800);
-		//    tv.setBackgroundColor(0xff0000);
-		//    menuItemCreateCart.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		//    menuItemCreateCart.setActionView(tv);
-		return true;
-	}
-
-
-	@Override
-	protected void onStop() {
-		System.gc();
-		
-		super.onStop();
-	}
-
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.m_search:
-
-			onSearchRequested();
-
-			return true;
-		case R.id.m_clear:
-
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+	private ImageLoader imageLoader;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
@@ -94,10 +53,49 @@ public class ImageIOActivity extends GoUpActivity
 		adapter = new ListAdapter(this);
 		listView = (ListView)findViewById(android.R.id.list);
 		listView.setAdapter(adapter);
+		imageLoader = ImageLoader.getInstance();
+		options = new DisplayImageOptions.Builder()
+		.showStubImage(android.R.drawable.ic_input_add)
+		.cacheInMemory()
+		.imageScaleType(ImageScaleType.POWER_OF_2)
+		.resetViewBeforeLoading()
+		.showImageForEmptyUri(android.R.drawable.ic_menu_rotate)
+		.cacheOnDisc()
+		.build();
 	}
 
 	@Override
-	protected void onNewIntent(Intent intent) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		getSupportMenuInflater().inflate(R.menu.search, menu);
+		return true;
+	}
+
+	@Override
+	protected void onStop()
+	{
+		imageLoader.stop();
+		System.gc();
+		super.onStop();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.m_search:
+
+			onSearchRequested();
+
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) 
+	{
 		setIntent(intent);
 		handleIntent(intent);
 	}
@@ -126,20 +124,53 @@ public class ImageIOActivity extends GoUpActivity
 			super(context, 0);
 		}
 
-		@Override
+		//		private class ViewHolder {
+		//			public ImageView image;
+		//		}
+
+		//		public View getView(final int position, View convertView, ViewGroup parent) 
+		//		{
+		//			final ViewHolder holder;
+		//			if (convertView == null) {
+		//				convertView = new ImageView(ImageIOActivity.this);// getLayoutInflater().inflate(R.layout.item_list_image, null);
+		//				holder = new ViewHolder();
+		//				holder.image = (ImageView) convertView.findViewWithTag("image");
+		//				convertView.setTag(holder);
+		//			} else
+		//				holder = (ViewHolder) convertView.getTag();
+
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ImageView iv;
+			ImageView imageView;
 			if (convertView == null)
-				convertView = iv = new ImageView(ImageIOActivity.this);
-			else
-				iv = (ImageView)convertView;
-			UrlImageViewHelper.setUrlDrawable(iv, getItem(position), android.R.drawable.ic_menu_gallery, null);
-			return iv;
+			{
+				convertView = imageView = new ImageView(ImageIOActivity.this);
+				imageView.setScaleType(ScaleType.CENTER_INSIDE);
+				imageView.setAdjustViewBounds(true);
+			}else
+			{
+				imageView = (ImageView)convertView;
+			}
+			imageLoader.displayImage(getItem(position), imageView, options, new SimpleImageLoadingListener() {
+				@Override
+				public void onLoadingComplete(Bitmap loadedImage) {
+
+				}
+				@Override
+				public void onLoadingFailed(FailReason failReason) {
+					if( failReason == FailReason.OUT_OF_MEMORY )
+					{
+						System.gc();
+					}
+				}
+			});
+			return convertView;
 		}
 	}
 
 	class LoadTask extends AsyncTask<String, String, Void>
 	{
+
+		public static final int RESULT_LENGTH = 8; 
 
 		@Override
 		protected void onPreExecute() {
@@ -170,10 +201,14 @@ public class ImageIOActivity extends GoUpActivity
 				{
 					return null;
 				}
-				String body = HttpRequest.get("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + query + "&start="+ (i * 8) +"&rsz=" + 8).body();
-				//JSONObject json = null;
-				//JSONArray results = null;
-				//final ArrayList<String> urls = new ArrayList<String>();
+				String body = null;
+				try{
+					body = HttpRequest.get("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + query + "&start="+ (i * RESULT_LENGTH) +"&rsz=" + RESULT_LENGTH).body();
+				}catch(HttpRequestException exeption)
+				{
+					i--;
+					continue;
+				}
 				JsonFactory factory = new JsonFactory();
 				JsonParser jsonParser = null;
 				try {
@@ -199,35 +234,12 @@ public class ImageIOActivity extends GoUpActivity
 							}
 							break;
 						}
-					}   
-
+					}
 				} catch (JsonParseException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
-				//				try {
-				//					json = new JSONObject(body);
-				//					results = json.getJSONObject("responseData").getJSONArray("results");
-				//					for (int j = 0; j < results.length(); j++) {	
-				//						JSONObject result = null;
-				//						try {
-				//							result = results.getJSONObject(j);
-				//							String url = result.getString("url");
-				//							urls.add(url);
-				//							publishProgress(url);	
-				//							if( isCancelled() )
-				//							{
-				//								return null;
-				//							}
-				//						} catch (JSONException e) {
-				//							e.printStackTrace();
-				//						}
-				//					}
-				//				} catch (JSONException e) {
-				//					e.printStackTrace();
-				//				}
 			}
 			return null;
 		}

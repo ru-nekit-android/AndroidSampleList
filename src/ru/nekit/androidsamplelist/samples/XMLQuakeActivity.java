@@ -58,11 +58,18 @@ public class XMLQuakeActivity extends GoUpActivity {
 		list.setAdapter(adapter);
 		refresh();
 	}
-	
+
 	private void refresh()
 	{
 		task = new LoadXML();
 		task.execute();
+	}
+
+	@Override
+	protected void onStop() 
+	{
+		task.cancel(true);
+		super.onStop();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="mAppTheme" parent="Theme.Sherlock.Light">
+    <style name="AppTheme" parent="Theme.Sherlock.Light">
         <item name="android:windowAnimationStyle">@style/Animation.ActivityTransition</item>
     </style>
 
