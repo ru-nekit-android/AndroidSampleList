@@ -81,6 +81,14 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		return task;
 	}
 
+	@SuppressWarnings("unused")
+	private class TaskCancelException extends Exception
+	{
+
+		private static final long serialVersionUID = 1L;
+
+	}
+
 	private class LoadJson extends AsyncTask<Void, FeedSimpleItemVO, Integer>
 	{
 
@@ -94,6 +102,14 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 			adapter.clear();
 		}
 
+		private void watchCancel() throws TaskCancelException
+		{
+			if( isCancelled() )
+			{
+				throw new TaskCancelException();
+			}
+		}
+
 		@Override
 		protected Integer doInBackground(Void... params) 
 		{
@@ -101,53 +117,60 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 			HttpClient client = new DefaultHttpClient();
 			HttpGet httpGet = new HttpGet(FEED);
 			HttpResponse response;
-			try {
-				response = client.execute(httpGet);
-				StatusLine statusLine = response.getStatusLine();
-				int statusCode = statusLine.getStatusCode();
-				if (statusCode == HttpURLConnection.HTTP_OK ) 
-				{
-					HttpEntity entity = response.getEntity();
-					InputStream content = entity.getContent();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-					String line;
-					while ((line = reader.readLine()) != null) {
-						builder.append(line);
-					}
-				}
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			String jsonString = builder.toString();
-			JSONArray jsonArray = null;
-			try {
-				jsonArray = new JSONArray(jsonString);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			final int length = jsonArray.length();
-			SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			for (int i = 0 ;i< length; i++ ) 
-			{
-				JSONObject jsonObject = null;
+			try{
 				try {
-					jsonObject = jsonArray.getJSONObject(i);
-					FeedSimpleItemVO feedItem = new FeedSimpleItemVO(jsonObject.getString("name"), 
-							format.parse(jsonObject.getString("storydate")), 
-							new URL(jsonObject.getString("image")), 
-							new URL(jsonObject.getString("url")));
-					publishProgress(feedItem);	
+					response = client.execute(httpGet);
+					StatusLine statusLine = response.getStatusLine();
+					int statusCode = statusLine.getStatusCode();
+					if (statusCode == HttpURLConnection.HTTP_OK ) 
+					{
+						HttpEntity entity = response.getEntity();
+						InputStream content = entity.getContent();
+						BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+						String line;
+						while ((line = reader.readLine()) != null) {
+							builder.append(line);
+							watchCancel();
+						}
+					}
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				String jsonString = builder.toString();
+				JSONArray jsonArray = null;
+				int length = 0;
+				try {
+					jsonArray = new JSONArray(jsonString);
+					length = jsonArray.length();
+					SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					for (int i = 0 ;i< length; i++ ) 
+					{
+						watchCancel();
+						JSONObject jsonObject = null;
+						try {
+							jsonObject = jsonArray.getJSONObject(i);
+							FeedSimpleItemVO feedItem = new FeedSimpleItemVO(jsonObject.getString("name"), 
+									format.parse(jsonObject.getString("storydate")), 
+									new URL(jsonObject.getString("image")), 
+									new URL(jsonObject.getString("url")));
+							publishProgress(feedItem);	
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						} catch (ParseException e) {
+							e.printStackTrace();
+						}
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (ParseException e) {
-					e.printStackTrace();
 				}
+				return length;
+			}catch( TaskCancelException exception )
+			{
+				Toast.makeText( JsonFeedsActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+				return 0;
 			}
-			return length;
 		}
 
 		@Override
@@ -208,7 +231,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 	}
 
 	@Override
-	public void onDestroy()
+	public void onStop()
 	{
 		if (tts != null)
 		{
@@ -219,7 +242,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		{
 			task.cancel(true);
 		}
-		super.onDestroy();
+		super.onStop();
 	}
 
 	@Override
