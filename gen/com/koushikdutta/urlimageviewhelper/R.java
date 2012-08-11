@@ -1238,8 +1238,9 @@ containing a value of this type.
         public static final int wifi_settings=0x7f060036;
     }
     public static final class style {
-        public static final int AppTheme=0x7f0c005b;
-        public static final int ButtonText=0x7f0c0065;
+        public static final int Animation_ActivityTransition=0x7f0c005c;
+        public static final int AppTheme=0x7f0c0067;
+        public static final int ButtonText=0x7f0c0066;
         public static final int DialogWindowTitle_Sherlock=0x7f0c0033;
         public static final int DialogWindowTitle_Sherlock_Light=0x7f0c0034;
         public static final int Sherlock___TextAppearance_Small=0x7f0c0047;
@@ -1331,15 +1332,16 @@ containing a value of this type.
         public static final int Widget_Sherlock_ProgressBar_Horizontal=0x7f0c0030;
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0c0024;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0c0032;
-        public static final int button_style_one=0x7f0c0064;
-        public static final int menu_item=0x7f0c005d;
-        public static final int menu_item_chevron=0x7f0c005e;
-        public static final int menu_item_large_count_text=0x7f0c0062;
-        public static final int menu_item_large_text=0x7f0c0060;
-        public static final int menu_item_small_text=0x7f0c0061;
-        public static final int menu_style=0x7f0c005c;
-        public static final int quake_text=0x7f0c005f;
-        public static final int wifi_status_style=0x7f0c0063;
+        public static final int button_style_one=0x7f0c0065;
+        public static final int mAppTheme=0x7f0c005b;
+        public static final int menu_item=0x7f0c005e;
+        public static final int menu_item_chevron=0x7f0c005f;
+        public static final int menu_item_large_count_text=0x7f0c0063;
+        public static final int menu_item_large_text=0x7f0c0061;
+        public static final int menu_item_small_text=0x7f0c0062;
+        public static final int menu_style=0x7f0c005d;
+        public static final int quake_text=0x7f0c0060;
+        public static final int wifi_status_style=0x7f0c0064;
     }
     public static final class xml {
         public static final int searchable_activity=0x7f050000;

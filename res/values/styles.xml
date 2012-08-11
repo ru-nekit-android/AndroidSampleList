@@ -1,6 +1,15 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="mAppTheme" parent="Theme.Sherlock.Light">
+        <item name="android:windowAnimationStyle">@style/Animation.ActivityTransition</item>
+    </style>
+
+    <style name="Animation.ActivityTransition" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
+    </style>
 
     <style name="menu_style" parent="Sherlock.__Widget.Holo.ListView">
         <item name="android:listSelector">@android:color/transparent</item>
@@ -28,7 +37,7 @@
         <item name="android:src">@drawable/chevron</item>
         <item name="android:duplicateParentState">true</item>
     </style>
-    
+
     <style name="quake_text">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -61,7 +70,7 @@
     <style name="menu_item_small_text">
         <item name="android:duplicateParentState">true</item>
         <item name="android:textSize">12.0dip</item>
-         <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/text_color_selector</item>

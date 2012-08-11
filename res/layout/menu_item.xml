@@ -4,8 +4,9 @@
     style="@style/menu_item"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20dip"
     android:layout_marginTop="20dip"
-    android:minHeight="60dip" android:paddingTop="10dp" android:paddingBottom="10dp"
+    android:minHeight="70dip"
     android:orientation="horizontal" >
 
     <ImageView
@@ -20,7 +21,9 @@
         android:duplicateParentState="true"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="10dip" >
+        android:paddingBottom="10dip"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip" >
 
         <TextView
             style="@style/menu_item_large_text"

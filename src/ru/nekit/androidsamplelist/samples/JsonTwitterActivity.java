@@ -53,7 +53,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 	private JsonTwitterListAdapter adapter;
 	private ListView list;
 	private TwitterItemVO currentItem;
-	private  TextToSpeechBeta tts;
+	private TextToSpeechBeta tts;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
