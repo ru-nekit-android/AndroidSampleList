@@ -1136,13 +1136,12 @@ containing a value of this type.
         public static final int activity_wifi=0x7f030024;
         public static final int activity_xml_quake=0x7f030025;
         public static final int collapsible_edittext=0x7f030026;
-        public static final int item_list_image=0x7f030027;
-        public static final int json_feeds_list_item=0x7f030028;
-        public static final int json_twitter_list_item=0x7f030029;
-        public static final int menu_item=0x7f03002a;
-        public static final int quake_list_item=0x7f03002b;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
-        public static final int sherlock_spinner_item=0x7f03002d;
+        public static final int json_feeds_list_item=0x7f030027;
+        public static final int json_twitter_list_item=0x7f030028;
+        public static final int menu_item=0x7f030029;
+        public static final int quake_list_item=0x7f03002a;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002b;
+        public static final int sherlock_spinner_item=0x7f03002c;
     }
     public static final class menu {
         public static final int search=0x7f0d0000;

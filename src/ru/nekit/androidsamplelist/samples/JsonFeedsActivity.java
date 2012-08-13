@@ -81,7 +81,6 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		return task;
 	}
 
-	@SuppressWarnings("unused")
 	private class TaskCancelException extends Exception
 	{
 

@@ -15,7 +15,7 @@ public class SampleListApplication extends Application {
 		.threadPoolSize(3)
 		//.offOutOfMemoryHandling()
 		.threadPriority(ImageLoaderConfiguration.Builder.DEFAULT_THREAD_PRIORITY)
-		.memoryCacheSize(67108864)
+		.memoryCacheSize(1024*1024*2)
 		.denyCacheImageMultipleSizesInMemory()
 		.discCacheFileNameGenerator(new Md5FileNameGenerator())
 		.build();

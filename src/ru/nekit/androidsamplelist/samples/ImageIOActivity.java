@@ -129,7 +129,9 @@ public class ImageIOActivity extends GoUpActivity
 			if (convertView == null)
 			{
 				convertView = imageView = new ImageView(ImageIOActivity.this);
-				imageView.setScaleType(ScaleType.CENTER_INSIDE);
+				imageView.setScaleType(ScaleType.CENTER_CROP);
+				imageView.setPadding(10, 10, 10, 10);
+				imageView.setBackgroundColor(0xff8800);
 				imageView.setAdjustViewBounds(true);
 			}else
 			{
