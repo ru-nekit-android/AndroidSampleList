@@ -83,6 +83,14 @@ public class SensorActivity extends GoUpActivity implements OnItemClickListener 
 
 				textView.setText("[ x: " + String.valueOf(event.values[0]) + " | y: " + String.valueOf(event.values[1]) + " | z: " + String.valueOf(event.values[2]) + " ]");
 			}
+			else if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER ){
+
+				textView.setText("m/s^2: [ x: " + String.valueOf(event.values[0]) + " | y: " + String.valueOf(event.values[1]) + " | z: " + String.valueOf(event.values[2]) + " ]");
+			}
+			else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD ){
+
+				textView.setText("uT: [ x: " + String.valueOf(event.values[0]) + " | y: " + String.valueOf(event.values[1]) + " | z: " + String.valueOf(event.values[2]) + " ]");
+			}
 		}
 	};
 
