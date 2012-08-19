@@ -18,6 +18,8 @@
     <string name="description_activity_imageio">search + json (streaming jackson) + imagelist (cashable)</string>
     <string name="title_activity_vibrate">Vibate</string>
     <string name="description_activity_vibrate">Vibrate sample</string>
+    <string name="title_activity_sensor">Sensors</string>
+    <string name="description_activity_sensor">Sensor list sample</string>
     <string name="title_activity_voice_recognaize">Voice recognaize</string>
     <string name="description_activity_voice_recognaize">Voice recognaize sample</string>
     <string name="title_activity_wifi">Wifi</string>

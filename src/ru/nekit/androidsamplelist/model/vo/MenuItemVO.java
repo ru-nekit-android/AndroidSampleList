@@ -1,6 +1,6 @@
 package ru.nekit.androidsamplelist.model.vo;
 
-public class MenuItemVO 
+public class MenuItemVO
 {
 
 	public String title;
@@ -11,5 +11,4 @@ public class MenuItemVO
 		this.title = title;
 		this.subtitle = subtitle;
 	}
-
 }

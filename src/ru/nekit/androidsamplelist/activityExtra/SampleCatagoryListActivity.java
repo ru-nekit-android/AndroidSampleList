@@ -44,7 +44,7 @@ public abstract class SampleCatagoryListActivity extends GoUpActivity implements
 		menuView.setAdapter(adapter);
 	}
 
-	protected void getData()
+	private void getData()
 	{
 
 		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
