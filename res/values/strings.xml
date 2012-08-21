@@ -46,10 +46,15 @@
     <string name="description_activity_json_twitter">Read Twitter in json format (Gson)</string>
     <string name="title_activity_logo">Logo</string>
     <string name="description_activity_logo">logo</string>
+    <string name="title_activity_split_view">Split view</string>
+    <string name="description_activity_split_view">Fragment sample</string>
+    <string name="title_activity_split_view_detail">Detail view</string>
+    <string name="description_activity_split_view_detail">Detail view</string>
     <string name="wifi_settings">Wifi settings</string>
     <string name="vibrate">Start vibrate</string>
     <string name="camera">Shoot</string>
     <string name="vibrate_cancel">Cancel vibrate</string>
     <string name="voice_recognaize">Start voice recognaize</string>
+    <string name="descr_image">Image</string>
 
 </resources>

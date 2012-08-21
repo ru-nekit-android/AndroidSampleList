@@ -90,6 +90,8 @@ public class SensorActivity extends GoUpActivity implements OnItemClickListener 
 			else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD ){
 
 				textView.setText("uT: [ x: " + String.valueOf(event.values[0]) + " | y: " + String.valueOf(event.values[1]) + " | z: " + String.valueOf(event.values[2]) + " ]");
+			}else{
+				textView.setText("unknown sensor: [ v1: " + String.valueOf(event.values[0]) + " | v2: " + String.valueOf(event.values[1]) + " | v3: " + String.valueOf(event.values[2]) + " ]");
 			}
 		}
 	};

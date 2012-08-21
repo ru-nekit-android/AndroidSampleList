@@ -12,7 +12,7 @@ public class GoUpActivity extends FacadeActivity {
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		if( hasGoUp() )

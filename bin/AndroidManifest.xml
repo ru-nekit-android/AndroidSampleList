@@ -68,6 +68,7 @@
             android:label="@string/title_activity_web" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="ru.nekit.category.utils" />
             </intent-filter>
         </activity>
@@ -148,7 +149,7 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="ru.nekit.category.service" />
-				<category android:name="ru.nekit.category.ui" />
+                <category android:name="ru.nekit.category.ui" />
             </intent-filter>
         </activity>
         <activity
@@ -233,6 +234,24 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="ru.nekit.category.ui" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.SplitViewActivity"
+            android:description="@string/description_activity_split_view"
+            android:label="@string/title_activity_split_view" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="ru.nekit.category.ui" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".samples.SplitViewActivity$DetailsActivity"
+            android:description="@string/description_activity_split_view_detail"
+            android:label="@string/title_activity_split_view_detail" >
+            <intent-filter>
+                <category android:name="ru.nekit.category.utils" />
             </intent-filter>
         </activity>
     </application>

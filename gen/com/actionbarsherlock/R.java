@@ -22,6 +22,11 @@ public final class R {
         public static final int slide_up_in=0x7f04000a;
         public static final int slide_up_out=0x7f04000b;
     }
+    public static final class array {
+        public static final int one_images=0x7f0d0000;
+        public static final int three_images=0x7f0d0002;
+        public static final int two_images=0x7f0d0001;
+    }
     public static final class attr {
         /**  Specified if we are forcing an action item overflow menu. 
          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
@@ -1239,18 +1244,20 @@ containing a value of this type.
         public static final int button_camera=0x7f060033;
         public static final int button_vibrate=0x7f06003f;
         public static final int button_wifi_settings=0x7f060042;
+        public static final int details=0x7f060043;
         public static final int disableHome=0x7f06000b;
         public static final int fill=0x7f060001;
         public static final int header_layout=0x7f060034;
         public static final int homeAsUp=0x7f060008;
+        public static final int image=0x7f060044;
         public static final int imageView=0x7f060032;
         public static final int linearLayout1=0x7f06003e;
         public static final int listMode=0x7f060004;
-        public static final int m_clear=0x7f060045;
-        public static final int m_search=0x7f060044;
-        public static final int menuItemContainer=0x7f060043;
+        public static final int m_clear=0x7f060047;
+        public static final int m_search=0x7f060046;
+        public static final int menuItemContainer=0x7f060045;
         public static final int menuView=0x7f060037;
-        public static final int menu_search=0x7f060046;
+        public static final int menu_search=0x7f060048;
         public static final int normal=0x7f060003;
         public static final int search_bar=0x7f060029;
         public static final int search_button=0x7f06002a;
@@ -1324,17 +1331,20 @@ containing a value of this type.
         public static final int activity_wifi=0x7f030026;
         public static final int activity_xml_quake=0x7f030027;
         public static final int collapsible_edittext=0x7f030028;
-        public static final int json_feeds_list_item=0x7f030029;
-        public static final int json_twitter_list_item=0x7f03002a;
-        public static final int menu_item=0x7f03002b;
-        public static final int phone_info_item=0x7f03002c;
-        public static final int quake_list_item=0x7f03002d;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002e;
-        public static final int sherlock_spinner_item=0x7f03002f;
+        public static final int fragment_split_view=0x7f030029;
+        public static final int item_grid_image=0x7f03002a;
+        public static final int json_feeds_list_item=0x7f03002b;
+        public static final int json_twitter_list_item=0x7f03002c;
+        public static final int menu_item=0x7f03002d;
+        public static final int phone_info_item=0x7f03002e;
+        public static final int quake_list_item=0x7f03002f;
+        public static final int sherlock_spinner_dropdown_item=0x7f030030;
+        public static final int sherlock_spinner_item=0x7f030031;
+        public static final int simple_list_item_checkable=0x7f030032;
     }
     public static final class menu {
-        public static final int search=0x7f0d0000;
-        public static final int search_view=0x7f0d0001;
+        public static final int search=0x7f0e0000;
+        public static final int search_view=0x7f0e0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1380,8 +1390,9 @@ containing a value of this type.
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f07000b;
         public static final int app_name=0x7f070001;
-        public static final int camera=0x7f07003e;
+        public static final int camera=0x7f070042;
         public static final int clear=0x7f070012;
+        public static final int descr_image=0x7f070045;
         public static final int description_activity_camera=0x7f07002d;
         public static final int description_activity_colored_buttons=0x7f070033;
         public static final int description_activity_google_tts=0x7f070031;
@@ -1395,6 +1406,8 @@ containing a value of this type.
         public static final int description_activity_sensor=0x7f070021;
         public static final int description_activity_service=0x7f07001b;
         public static final int description_activity_shake=0x7f07002b;
+        public static final int description_activity_split_view=0x7f07003d;
+        public static final int description_activity_split_view_detail=0x7f07003f;
         public static final int description_activity_tts=0x7f07002f;
         public static final int description_activity_ui=0x7f070017;
         public static final int description_activity_vibrate=0x7f07001f;
@@ -1419,6 +1432,8 @@ containing a value of this type.
         public static final int title_activity_sensor=0x7f070020;
         public static final int title_activity_service=0x7f07001a;
         public static final int title_activity_shake=0x7f07002a;
+        public static final int title_activity_split_view=0x7f07003c;
+        public static final int title_activity_split_view_detail=0x7f07003e;
         public static final int title_activity_tts=0x7f07002e;
         public static final int title_activity_ui=0x7f070015;
         public static final int title_activity_vibrate=0x7f07001e;
@@ -1426,10 +1441,10 @@ containing a value of this type.
         public static final int title_activity_web=0x7f070016;
         public static final int title_activity_wifi=0x7f070028;
         public static final int title_activity_xml_quake=0x7f070034;
-        public static final int vibrate=0x7f07003d;
-        public static final int vibrate_cancel=0x7f07003f;
-        public static final int voice_recognaize=0x7f070040;
-        public static final int wifi_settings=0x7f07003c;
+        public static final int vibrate=0x7f070041;
+        public static final int vibrate_cancel=0x7f070043;
+        public static final int voice_recognaize=0x7f070044;
+        public static final int wifi_settings=0x7f070040;
     }
     public static final class style {
         public static final int Animation_ActivityTransition=0x7f0c005c;
