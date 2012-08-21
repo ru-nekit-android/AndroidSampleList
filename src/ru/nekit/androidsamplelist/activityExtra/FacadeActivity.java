@@ -9,6 +9,7 @@ public class FacadeActivity extends SherlockActivity {
 	public SampleListFacade facade;
 
 	protected void onCreate(android.os.Bundle savedInstanceState) {
+		
 		facade = SampleListFacade.getInstance();
 		super.onCreate(savedInstanceState);
 	};

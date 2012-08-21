@@ -8,5 +8,6 @@
     <color name="base_end_color_pressed">#B02570ba</color>
     <color name="text_color_default">#000000</color>
     <color name="text_color_pressed">#ffffff</color>  
-
+	<color name="phone_info_text_color">#FF333333</color>  
+    
 </resources>

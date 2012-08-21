@@ -46,8 +46,8 @@ public abstract class SampleCatagoryListActivity extends GoUpActivity implements
 
 	private void getData()
 	{
-
-		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+		
+		Intent mainIntent = new Intent(Intent.ACTION_VIEW, null);
 		mainIntent.addCategory(getCategory());
 
 		PackageManager pm = getPackageManager();
@@ -100,7 +100,9 @@ public abstract class SampleCatagoryListActivity extends GoUpActivity implements
 	public void onItemClick(AdapterView<?> adapter, View view, int position, long i) 
 	{
 		MenuItemVO item = this.adapter.getItem(position);
-		startActivity(intentMap.get(item));
+		Intent intent = intentMap.get(item);
+		intent.addCategory(getCategory());
+		startActivity(intent);
 		overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
 	}
 

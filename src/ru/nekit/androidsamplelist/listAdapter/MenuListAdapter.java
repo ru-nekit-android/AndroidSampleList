@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MenuListAdapter extends ArrayAdapter<MenuItemVO> {
+public class MenuListAdapter extends ArrayAdapter<MenuItemVO> 
+{
 
 	Activity context;
 	List<MenuItemVO> dataSource;
@@ -24,7 +25,8 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemVO> {
 
 	}
 
-	public MenuListAdapter(Activity context, List<MenuItemVO> objects) {
+	public MenuListAdapter(Activity context, List<MenuItemVO> objects)
+	{
 		super(context, R.layout.menu_item, objects);
 		this.dataSource = objects;
 		this.context 	= context;
@@ -32,7 +34,8 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemVO> {
 	}
 
 	@Override
-	public View getView(int index, View convertView, ViewGroup parent) {
+	public View getView(int index, View convertView, ViewGroup parent) 
+	{
 		ViewHolder holder;
 		View rowView = convertView;
 		if (rowView == null) {
