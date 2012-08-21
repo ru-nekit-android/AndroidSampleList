@@ -9,4 +9,6 @@ Android samples
 <tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/7.png"/></td> </tr>
 <tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/8.png"/></td> </tr>
 <tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/9.png"/></td> </tr>
-<tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/10.png"/></td> </tr><tr></tbody></table>
+<tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/10.png"/></td> </tr>
+
+<tr>    <td cellpadding="5" cellspacing="5"><img src="https://raw.github.com/ru-nekit-android/AndroidSampleList/master/screenshots/11.png"/></td> </tr><tr></tbody></table>
