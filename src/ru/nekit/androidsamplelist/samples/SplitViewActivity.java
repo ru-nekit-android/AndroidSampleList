@@ -15,8 +15,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -27,6 +25,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 
 public class SplitViewActivity extends GoUpFragmentActivity {
@@ -159,13 +158,11 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 
 	private static class ImageAdapter extends BaseAdapter {
 
-		private Context context;
 		private LayoutInflater inflater;
 		private ImageData imageData;
 
 		public ImageAdapter(Context context, ImageData imageData)
 		{
-			this.context = context;
 			this.imageData = imageData;
 			inflater = (LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
 		}
@@ -199,13 +196,14 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 
 			imageLoader.displayImage(imageData.images[position], imageView, options, new SimpleImageLoadingListener() {
 				@Override
-				public void onLoadingComplete(Bitmap loadedImage) {
-					//Animation anim = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-					//imageView.setAnimation(anim);
-					//anim.start();
+				public void onLoadingFailed(FailReason failReason) {
+					super.onLoadingFailed(failReason);
+					if( failReason == FailReason.OUT_OF_MEMORY )
+					{
+						System.gc();
+					}
 				}
 			});
-
 			return imageView;
 		}
 	}
@@ -213,18 +211,16 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 	public static class DetailsFragment extends SherlockFragment 
 	{
 
-		private static int currentPosition = 0;
-
 		public int getCurrentPosition()
 		{
 			return getArguments().getInt("currentPosition", 0);
 		}
 
-		public static DetailsFragment getInstance( int currentPosition) 
+		public static DetailsFragment getInstance(int currentPosition) 
 		{
 			DetailsFragment fragment = new DetailsFragment();
 			Bundle args = new Bundle();
-			args.putInt("currentPosition", DetailsFragment.currentPosition = currentPosition);
+			args.putInt("currentPosition", currentPosition);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -254,9 +250,10 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 			}
 			grid.setBackgroundColor(0x33333333);
 			grid.setGravity(Gravity.CENTER);
-			grid.setAdapter(new SplitViewActivity.ImageAdapter(getActivity(), data.get(currentPosition)));
-			int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
+			grid.setAdapter(new SplitViewActivity.ImageAdapter(getActivity(), data.get(getCurrentPosition())));
+			int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getActivity().getResources().getDisplayMetrics());
 			grid.setHorizontalSpacing(padding);
+			grid.setVerticalSpacing(padding);
 			return grid;
 		}
 	}
