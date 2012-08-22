@@ -7,7 +7,6 @@ import ru.nekit.androidsamplelist.activityExtra.GoUpFragmentActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
@@ -54,7 +53,6 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 
 		data.add(new ImageData("One",getResources().getStringArray(R.array.one_images)));
 		data.add(new ImageData("Two",getResources().getStringArray(R.array.two_images)));
-		data.add(new ImageData("Three",getResources().getStringArray(R.array.three_images)));
 
 		options = new DisplayImageOptions.Builder()
 		.showStubImage(android.R.drawable.ic_media_play)
@@ -193,7 +191,6 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 			} else {
 				imageView = (ImageView)convertView;
 			}
-
 			imageLoader.displayImage(imageData.images[position], imageView, options, new SimpleImageLoadingListener() {
 				@Override
 				public void onLoadingFailed(FailReason failReason) {
@@ -229,6 +226,7 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 		public void onDestroy() 
 		{
 			imageLoader.stop();
+			imageLoader.clearMemoryCache();
 			super.onDestroy();
 		}
 
@@ -240,9 +238,14 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 				return null;
 			}
 			GridView grid = new GridView(getActivity());
+			int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
 			if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE )
 			{
 				grid.setNumColumns(3);
+				int width = 200;//(container.getWidth() - padding *2)/3;
+				grid.setColumnWidth(width);
+				grid.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+				grid.setNumColumns(GridView.AUTO_FIT);
 			}
 			else
 			{
@@ -250,8 +253,10 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 			}
 			grid.setBackgroundColor(0x33333333);
 			grid.setGravity(Gravity.CENTER);
+			imageLoader.stop();
+			imageLoader.clearMemoryCache();
 			grid.setAdapter(new SplitViewActivity.ImageAdapter(getActivity(), data.get(getCurrentPosition())));
-			int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getActivity().getResources().getDisplayMetrics());
+
 			grid.setHorizontalSpacing(padding);
 			grid.setVerticalSpacing(padding);
 			return grid;

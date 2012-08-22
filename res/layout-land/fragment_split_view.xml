@@ -9,7 +9,7 @@
         android:layout_width="0px"
         android:layout_height="match_parent"
         android:layout_weight="0.6"
-        class="ru.nekit.androidsamplelist.samples.SplitViewActivity$ListFragment" android:layout_marginRight="1dip"/>
+        class="ru.nekit.androidsamplelist.samples.SplitViewActivity$ListFragment" android:layout_marginRight="2dip"/>
 
     <FrameLayout
         android:id="@+id/details"
