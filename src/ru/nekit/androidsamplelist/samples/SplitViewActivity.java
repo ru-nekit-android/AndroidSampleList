@@ -62,7 +62,7 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 		setContentView(R.layout.fragment_split_view);
 	}
 
-	public static class ListFragment extends SherlockListFragment
+	public static class MyListFragment extends SherlockListFragment
 	{
 
 		boolean isSplitView;
