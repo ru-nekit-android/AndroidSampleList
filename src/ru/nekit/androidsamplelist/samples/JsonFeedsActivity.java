@@ -30,8 +30,8 @@ import ru.nekit.androidsamplelist.activityExtra.WebActivity;
 import ru.nekit.androidsamplelist.listAdapter.JsonFeedsListAdapter;
 import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import ru.nekit.androidsamplelist.model.vo.FeedSimpleItemVO;
-import ru.nekit.androidsamplelist.tools.Translit;
-import ru.nekit.androidsamplelist.tools.WidgetTools;
+import ru.nekit.androidsamplelist.utils.Translit;
+import ru.nekit.androidsamplelist.utils.WidgetUtils;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -199,7 +199,7 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 	public void onItemClick(AdapterView<?> adapter, View view, final int index, long i)
 	{
 		currentItem = this.adapter.getItem(index);
-		WidgetTools.showSelectAccountTypeDialog(this, "Choose an action", actionListData, new OnClickListener() {
+		WidgetUtils.showSelectAccountTypeDialog(this, "Choose an action", actionListData, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				if( which == 0 )

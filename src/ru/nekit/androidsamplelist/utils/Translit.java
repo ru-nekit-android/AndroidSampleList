@@ -1,4 +1,4 @@
-package ru.nekit.androidsamplelist.tools;
+package ru.nekit.androidsamplelist.utils;
 
 import java.util.Hashtable;
 

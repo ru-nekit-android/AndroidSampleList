@@ -213,6 +213,27 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".samples.BatteryActivity"
+            android:description="@string/description_activity_battery"
+            android:label="@string/title_activity_battery" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="ru.nekit.category.service" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".samples.BatteryActivity$BatteryReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.ACTION_BATTERY_LOW" />
+                <action android:name="android.intent.action.ACTION_BATTERY_OKAY" />
+                 <action android:name="android.intent.action.ACTION_BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
             android:name=".samples.JsonTwitterActivity"
             android:description="@string/description_activity_json_twitter"
             android:label="@string/title_activity_json_twitter" >

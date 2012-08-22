@@ -15,7 +15,7 @@ import ru.nekit.androidsamplelist.activityExtra.GoUpActivity;
 import ru.nekit.androidsamplelist.listAdapter.JsonTwitterListAdapter;
 import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import ru.nekit.androidsamplelist.model.vo.TwitterItemVO;
-import ru.nekit.androidsamplelist.tools.WidgetTools;
+import ru.nekit.androidsamplelist.utils.WidgetUtils;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -213,7 +213,7 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 	public void onItemClick(AdapterView<?> adapter, View view, final int index, long i)
 	{
 		currentItem = this.adapter.getItem(index);
-		WidgetTools.showSelectAccountTypeDialog(this, "Choose an action", actionListData, new OnClickListener() {
+		WidgetUtils.showSelectAccountTypeDialog(this, "Choose an action", actionListData, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) 
 			{

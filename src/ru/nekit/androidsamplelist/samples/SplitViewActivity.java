@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import ru.nekit.androidsamplelist.R;
 import ru.nekit.androidsamplelist.activityExtra.GoUpFragmentActivity;
+import ru.nekit.androidsamplelist.model.vo.ImageDataVO;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -31,28 +32,16 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 
 	private static ImageLoader imageLoader = ImageLoader.getInstance();
 	private static DisplayImageOptions options;
-	private static ArrayList<ImageData> data;
-
-	public class ImageData
-	{
-		public String name;
-		public String[] images;
-
-		public ImageData(String name, String[] images)
-		{
-			this.name = name;
-			this.images = images;
-		}
-	}
+	private static ArrayList<ImageDataVO> data;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		data = new ArrayList<ImageData>();
+		data = new ArrayList<ImageDataVO>();
 
-		data.add(new ImageData("One",getResources().getStringArray(R.array.one_images)));
-		data.add(new ImageData("Two",getResources().getStringArray(R.array.two_images)));
+		data.add(new ImageDataVO("One",getResources().getStringArray(R.array.one_images)));
+		data.add(new ImageDataVO("Two",getResources().getStringArray(R.array.two_images)));
 
 		options = new DisplayImageOptions.Builder()
 		.showStubImage(android.R.drawable.ic_input_add)
@@ -71,14 +60,13 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 		{
 			super.onActivityCreated(savedInstanceState);
 			ArrayList<String> titles = new ArrayList<String>(); 
-			for( ImageData image : data )
+			for( ImageDataVO image : data )
 			{
 				titles.add(image.name);
 			}
 			setListAdapter(new ArrayAdapter<String>(getActivity(),
 					R.layout.simple_list_item_checkable,
 					R.id.textView, titles));
-
 			View detailsFrame = getActivity().findViewById(R.id.details);
 			isSplitView =  detailsFrame != null && detailsFrame.getVisibility() == View.VISIBLE;
 			if (savedInstanceState != null) 
@@ -113,6 +101,7 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 					ft.replace(R.id.details, details);
 					ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE | FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 					ft.commit();
+					getFragmentManager().executePendingTransactions();
 				}
 			}else
 			{
@@ -156,9 +145,9 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 	private static class ImageAdapter extends BaseAdapter {
 
 		private LayoutInflater inflater;
-		private ImageData imageData;
+		private ImageDataVO imageData;
 
-		public ImageAdapter(Context context, ImageData imageData)
+		public ImageAdapter(Context context, ImageDataVO imageData)
 		{
 			this.imageData = imageData;
 			inflater = (LayoutInflater)context.getSystemService(LAYOUT_INFLATER_SERVICE);
