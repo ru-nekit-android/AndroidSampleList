@@ -55,9 +55,8 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 		data.add(new ImageData("Two",getResources().getStringArray(R.array.two_images)));
 
 		options = new DisplayImageOptions.Builder()
-		.showStubImage(android.R.drawable.ic_media_play)
+		.showStubImage(android.R.drawable.ic_input_add)
 		.cacheInMemory()
-		.cacheOnDisc()
 		.build();
 		setContentView(R.layout.fragment_split_view);
 	}
@@ -241,16 +240,13 @@ public class SplitViewActivity extends GoUpFragmentActivity {
 			int padding = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getActivity().getResources().getDisplayMetrics());
 			if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE )
 			{
-				grid.setNumColumns(3);
-				int width = 200;//(container.getWidth() - padding *2)/3;
-				grid.setColumnWidth(width);
-				grid.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 				grid.setNumColumns(GridView.AUTO_FIT);
 			}
 			else
 			{
 				grid.setNumColumns(1);
 			}
+			grid.setSmoothScrollbarEnabled(true);
 			grid.setBackgroundColor(0x33333333);
 			grid.setGravity(Gravity.CENTER);
 			imageLoader.stop();
