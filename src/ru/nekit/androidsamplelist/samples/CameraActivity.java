@@ -59,7 +59,7 @@ public class CameraActivity extends GoUpActivity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if( requestCode == CAMERA_PICTURE_REQUEST )
+		if( resultCode == RESULT_OK && requestCode == CAMERA_PICTURE_REQUEST )
 		{
 			imageData = (Bitmap) data.getExtras().get("data");  
 			image.setImageBitmap(imageData);
