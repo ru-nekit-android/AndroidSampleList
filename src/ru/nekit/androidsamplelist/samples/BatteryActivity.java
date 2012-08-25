@@ -64,7 +64,14 @@ public class BatteryActivity extends GoUpActivity {
 		@Override
 		public void onReceive(Context context, Intent intent)
 		{
-			instance.updateBatteryInfo(intent);
+			//receiver handle events even if activity not started. And if activity not create instance == null 
+			if( instance != null )
+			{
+				instance.updateBatteryInfo(intent);
+			}else
+			{
+				//do something
+			}
 		}
 	}
 }
