@@ -39,6 +39,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -268,6 +269,8 @@ public class JsonFeedsActivity extends GoUpActivity implements OnItemClickListen
 		{
 			tts.setLanguage(Locale.US);
 			speech();
-		}
+		}else if (initStatus == TextToSpeech.LANG_MISSING_DATA || initStatus == TextToSpeech.LANG_NOT_SUPPORTED) {
+			Log.e("TTS", "This Language is not supported");
+		} 
 	}
 }

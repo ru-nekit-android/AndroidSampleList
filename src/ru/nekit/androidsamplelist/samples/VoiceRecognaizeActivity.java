@@ -100,7 +100,7 @@ public class VoiceRecognaizeActivity extends GoUpActivity{
 			else if( resultCode == RESULT_CANCELED ) 
 			{
 				new AlertDialog.Builder(this).setTitle("Attention").
-				setMessage("Voice recognaize canceled").setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+				setMessage("Voice recognaize canceled").setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which)
 					{

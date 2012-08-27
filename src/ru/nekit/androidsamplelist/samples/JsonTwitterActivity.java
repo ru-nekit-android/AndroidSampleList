@@ -16,7 +16,7 @@ import ru.nekit.androidsamplelist.listAdapter.JsonTwitterListAdapter;
 import ru.nekit.androidsamplelist.model.vo.ActionItemVO;
 import ru.nekit.androidsamplelist.model.vo.TwitterItemVO;
 import ru.nekit.androidsamplelist.utils.WidgetUtils;
-import android.app.AlertDialog.Builder;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,6 +44,7 @@ import com.google.gson.JsonParser;
 import com.google.tts.TextToSpeechBeta;
 import com.google.tts.TextToSpeechBeta.OnInitListener;
 
+@SuppressLint("NewApi")
 public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextListener, OnInitListener, OnItemClickListener
 {
 
@@ -139,21 +140,6 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 			adapter.notifyDataSetChanged();
 		}
 
-		//		 HttpClient hc = new DefaultHttpClient();  
-		//       HttpGet get = new HttpGet(<path>);  
-		//       HttpResponse rp = hc.execute(get);  
-		//       if(rp.getStatusLine().getStatusCode() == HttpStatus.SC_OK)  
-		//       {  
-		//       String result = EntityUtils.toString(rp.getEntity());  
-		//       }
-
-		//		HttpClient httpClient = new DefaultHttpClient();
-		//		HttpContext localContext = new BasicHttpContext();
-		//		HttpGet httpGet = new HttpGet("http://www.cheesejedi.com/rest_services/get_big_cheese.php?puzzle=1");
-		//		HttpResponse response = httpClient.execute(httpGet, localContext);
-		//		HttpEntity entity = response.getEntity();
-		//		String result = EntityUtils.toString(entity);
-
 		@Override
 		protected Integer doInBackground(String... params) 
 		{
@@ -184,8 +170,8 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 			for(JsonElement element : array) {
 				JsonObject object = (JsonObject)element;
 				TwitterItemVO item = new TwitterItemVO(
-						object.get("from_user").toString(),
-						object.get("text").toString(),
+						object.get("from_user").getAsString(),
+						object.get("text").getAsString(),
 						object.get("profile_image_url").getAsString()
 						);
 				publishProgress(item);
@@ -203,7 +189,6 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 	}
 
 	private static final ActionItemVO[] actionListData = new ActionItemVO[]{ 
-		//		new ActionItemVO("Open in browser", R.drawable.ic_web), 
 		new ActionItemVO("Speech", R.drawable.ic_volume)
 	};
 
@@ -219,34 +204,34 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 			{
 				if( which == 0 )
 				{
-					if( tts == null )
+					tts = new TextToSpeechBeta(JsonTwitterActivity.this, JsonTwitterActivity.this);
+
+					if( ttsEngine == null )
 					{
-						ttsEngine = null;
-						tts = new TextToSpeechBeta(JsonTwitterActivity.this, JsonTwitterActivity.this);
-						ttsEngine = tts.getDefaultEngine();
-						if( TextToSpeechBeta.isInstalled(JsonTwitterActivity.this) )
+						ttsEngine = tts.getDefaultEngineExtended();
+						List<EngineInfo> list = tts.getEngines();
+						if( list.size() != 0 )
 						{
-							List<EngineInfo> list = tts.getEngines();
-							if( list.size() != 0 )
+							for( EngineInfo info : list )
 							{
-								for( EngineInfo info : list )
+								if( "com.svox.classic".equals(info.name) )
 								{
-									if( "com.svox.pico".equals(info.name) )
-									{
-										ttsEngine = info.name;
-									}
-									if( "com.googlecode.eyesfree.espeak".equals(info.name) )
-									{
-										if( ttsEngine == null )
-										{
-											ttsEngine = info.name;
-											break;
-										}
-									}
+									ttsEngine = info.name;
+									break;
+								}
+								if( "com.svox.pico".equals(info.name) )
+								{
+									ttsEngine = info.name;
+								}
+								if( "com.googlecode.eyesfree.espeak".equals(info.name) )
+								{
+									ttsEngine = info.name;
 								}
 							}
 						}
 					}
+					tts.setEngineByPackageNameExtended(ttsEngine);
+					tts.setLanguage( Locale.US );
 				}
 			}
 		} );
@@ -264,23 +249,17 @@ public class JsonTwitterActivity extends GoUpActivity implements OnQueryTextList
 
 	private void speech()
 	{
-		tts.speak(currentItem.message, TextToSpeechBeta.QUEUE_ADD, null);
+		tts.speak(currentItem.message, TextToSpeechBeta.QUEUE_FLUSH, null);
 	}
 
 	@Override
 	public void onInit(int result, int version) 
 	{
-		if( ttsEngine != null && result == TextToSpeechBeta.SUCCESS  )
+		if( result == TextToSpeechBeta.SUCCESS )
 		{
-			tts.setEngineByPackageName(ttsEngine);
-			tts.setLanguage( Locale.US );
 			speech();
 		}else{
 			tts.shutdown();
-			new Builder(this).setTitle("Text to speech")
-			.setCancelable(false)
-			.create()
-			.show();
 		}
 	}
 }

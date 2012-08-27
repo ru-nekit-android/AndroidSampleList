@@ -8,8 +8,7 @@ import android.content.DialogInterface.OnClickListener;
 
 public class WidgetUtils {
 
-	public static void showSelectAccountTypeDialog(Activity context, String title, 
-			ActionItemVO[] data, OnClickListener dialogListener) {
+	public static void showSelectAccountTypeDialog(Activity context, String title, ActionItemVO[] data, OnClickListener dialogListener) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(title);
 		builder.setAdapter(new ActionListAdapter(context, data), dialogListener);

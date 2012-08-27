@@ -19,7 +19,7 @@ public class ShakeMediator extends Mediator implements OnSeekBarChangeListener{
 	private Activity activity;
 	private TextView statusView;
 	private TextView valueView;
-	SeekBar seekBar;
+	private SeekBar seekBar;
 	private ForcePoint point;
 
 	public ShakeMediator(ShakeActivity activity) {
@@ -77,8 +77,7 @@ public class ShakeMediator extends Mediator implements OnSeekBarChangeListener{
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		ForcePoint.threshold_max = (float)progress/100;
 		valueView.setText("" + ForcePoint.threshold_max + " g");
 	}
